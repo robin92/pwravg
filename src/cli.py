@@ -4,14 +4,14 @@ from argparse import ArgumentParser
 from sys import argv, exit, stdin
 
 # this project
-import edukacja
-from base import average
+from sources import edukacjacl
+from util import average
 
 def format_course_title(title, maxlength = 32):
     return (title + " " * (maxlength - len(title)))[:maxlength]
 
 def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters = None):
-    source = edukacja.Source(webpage)
+    source = edukacjacl.Source(webpage)
     table = source.get_grades_table()
     if table is None: return False
     
