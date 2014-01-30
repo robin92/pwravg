@@ -4,12 +4,11 @@ class AbstractSource:
     Abstract class for all data parsers.
     """
     
-    def get_grades_table(self, root):
+    def get_grades_table(self):
         """
-        Retrieves semesters' data from provided BeautifulSoup HTML node. Should return
-        that data which then will be passed to semester_info(table) method.
+        Should return data which then will be passed to semester_info(table) method.
         """
-        pass
+        raise NotImplementedError("abstract method")
     
     def semester_info(self, table):
         """
@@ -21,7 +20,7 @@ class AbstractSource:
             courses         - list of tuples (course name, ects value, grade); types: (string, int, float)
         Please note that if for any course there is not grade provided it ought to set 0.0 as grade.
         """
-        pass
+        raise NotImplementedError("abstract method")
 
 def average(courses, weight = lambda x: 1, value = lambda x: x):
     """

@@ -1,4 +1,7 @@
 
+# 3rd party
+from bs4 import BeautifulSoup
+
 from base import AbstractSource
 
 class Source(AbstractSource):
@@ -8,12 +11,15 @@ class Source(AbstractSource):
     
     __pattern   = "Lista kursów realizowanych w semestrach"
     
+    def __init__(self, webpage):
+        self.root = BeautifulSoup(webpage)
+    
     def grade_to_float(self, grade):
         if grade is None or grade == "": return 0.0
         return float(grade)
 
-    def get_grades_table(self, root):
-        b, table = list(filter(lambda x: Source.__pattern in x, root.find_all('b')))[0], None
+    def get_grades_table(self):
+        b, table = list(filter(lambda x: Source.__pattern in x, self.root.find_all('b')))[0], None
         
         # looking for first table after specified text
         tmp = b

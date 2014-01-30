@@ -3,9 +3,6 @@
 from argparse import ArgumentParser
 from sys import argv, exit, stdin
 
-# 3rd party
-from bs4 import BeautifulSoup
-
 # this project
 import edukacja
 from base import average
@@ -14,8 +11,8 @@ def format_course_title(title, maxlength = 32):
     return (title + " " * (maxlength - len(title)))[:maxlength]
 
 def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters = None):
-    root, source = BeautifulSoup(webpage), edukacja.Source()
-    table = source.get_grades_table(root)
+    source = edukacja.Source(webpage)
+    table = source.get_grades_table()
     if table is None: return False
     
     total = {
