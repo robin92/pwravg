@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2014 Rafal Bolanowski
+# For licensing information please see a LICENSE file.
+#
 
 from unittest import TestCase
 from base64 import b64decode

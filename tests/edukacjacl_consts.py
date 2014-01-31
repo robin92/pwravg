@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2014 Rafal Bolanowski
+# For licensing information please see a LICENSE file.
+#
 
 # base64 encoded sample webpage from EdukacjaCL
 source = """

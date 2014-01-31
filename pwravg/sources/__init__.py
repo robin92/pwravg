@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2014 Rafal Bolanowski
+# For licensing information please see a LICENSE file.
+#
 
 """
 Package contains objects designed to parse a specific input (eg. from EdukacjaCL system) with grades

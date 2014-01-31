@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2014 Rafal Bolanowski
+# For licensing information please see a LICENSE file.
+#
 
 # 3rd party
 from bs4 import BeautifulSoup
