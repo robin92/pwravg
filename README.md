@@ -15,4 +15,4 @@ For those of you who just can't stand not having it installed. Just download the
 Please note that installation process is performed by ``setuptools`` package, so install that first.
 
 ### Final notes
-This application has been written for **Python >= 3** and almost for sure won't work with any lower version.
+This application has been written for **Python >= 3** and almost for sure won't work with any lower version. Current version supports only **EdukacjaCL** system but has capabilities to support any other.
