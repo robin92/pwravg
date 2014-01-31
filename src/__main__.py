@@ -5,15 +5,14 @@ from sys import argv, exit, stdin
 
 # this project
 from sources import edukacjacl
-from util import average
+from util import average, parse
 
 def format_course_title(title, maxlength = 32):
     return (title + " " * (maxlength - len(title)))[:maxlength]
 
 def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters = None):
     source = edukacjacl.Source(webpage)
-    table = source.get_grades_table()
-    if table is None: return False
+    data = parse(source)
     
     total = {
         "average": 0.0,
@@ -22,7 +21,8 @@ def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters
         "weightaverage": 0.0,
     }    
     
-    for name, year, semester, courses in source.semester_info(table):
+    for name, tmp in data:
+        year, semester, courses = tmp["year"], tmp["semester"], tmp["courses"]
         if semesters is not None and semester not in semesters: continue
         
         print("{}\nrok: {}\tsemestr: {}".format(name, year, semester))
