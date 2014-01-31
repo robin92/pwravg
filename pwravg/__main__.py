@@ -1,11 +1,17 @@
 
+"""
+Implementation of command line interface. Features:
+    * reads input from STDIN by default, can specify file with -f or --file
+    * specify semesters to include in counting
+"""
+
 # standard python library
 from argparse import ArgumentParser
 from sys import argv, exit, stdin
 
 # this project
-from sources import edukacjacl
-from util import average, parse
+from pwravg import average, parse
+from pwravg.sources import edukacjacl
 
 def format_course_title(title, maxlength = 32):
     return (title + " " * (maxlength - len(title)))[:maxlength]

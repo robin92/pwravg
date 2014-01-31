@@ -2,7 +2,7 @@
 # 3rd party
 from bs4 import BeautifulSoup
 
-from .base import AbstractSource
+from . import AbstractSource
 
 class Source(AbstractSource):
     """

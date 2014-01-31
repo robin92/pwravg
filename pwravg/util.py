@@ -1,5 +1,5 @@
 
-from sources.base import AbstractSource
+from pwravg.sources.base import AbstractSource
 
 def average(courses, weight = lambda x: 1, value = lambda x: x):
     """
