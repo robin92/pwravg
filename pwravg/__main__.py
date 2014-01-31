@@ -67,7 +67,7 @@ def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters
 __desc = """ Aplikacja licząca średnią arytmetyczną i średnią ważoną na podstawie danych z portalu EdukacjaCL """
 
 if __name__ == "__main__":
-    parser = ArgumentParser(description = __desc)
+    parser = ArgumentParser(prog = "pwravg", description = __desc)
     parser.add_argument("-f", "--file", type = str, dest = "file", help = "plik wejściowy, domyślnie STDIN")
     parser.add_argument("-s", "--semesters", type = int, nargs = "+", dest = "semesters", metavar = "N", help = "uwzględniane semestry")
     args = parser.parse_args(argv[1:])
