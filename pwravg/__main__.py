@@ -20,10 +20,12 @@ from pwravg.sources import edukacjacl
 def format_course_title(title, maxlength = 32):
     return (title + " " * (maxlength - len(title)))[:maxlength]
 
-def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters = None):
+def parse_webpage(webpage, width = 80, titlesep = "=", tablesep = "-", semesters = None, semesters_from_oldest=True):
     source = edukacjacl.Source(webpage)
-    data = parse(source)
-    
+    data = list(sorted(parse(source), key=lambda kv: kv[1]['semester']))
+    if not semesters_from_oldest:
+        data = list(reversed(data))
+
     total = {
         "average": 0.0,
         "courses": 0,
@@ -74,6 +76,8 @@ if __name__ == "__main__":
     parser = ArgumentParser(prog = "pwravg", description = __desc)
     parser.add_argument("-f", "--file", type = str, dest = "file", help = "plik wejściowy, domyślnie STDIN")
     parser.add_argument("-s", "--semesters", type = int, nargs = "+", dest = "semesters", metavar = "N", help = "uwzględniane semestry")
+    parser.add_argument("-r", "--reverse", dest="reversed", action="store_true",
+                        help="wypisz semestry w kolejności od najmłodszego do najstarszego")
     args = parser.parse_args(argv[1:])
 
     file = stdin
@@ -85,7 +89,9 @@ if __name__ == "__main__":
             exit(1)
 
     webpage = file.read()
-    if not webpage: exit(1)        
-    if not parse_webpage(webpage, semesters = args.semesters): exit(1)    
+    if not webpage:
+        exit(1)
+    if not parse_webpage(webpage, semesters = args.semesters, semesters_from_oldest=not(args.reversed)):
+        exit(1)
     exit(0)
 
